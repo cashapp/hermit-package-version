@@ -13,7 +13,7 @@ steps:
     id: hermit-version
     with:
       package: hermit
-  - run: echo "Hermit version ${{ steps.hermit-version.outputs.hermit-version }}
+  - run: echo "Hermit version ${{ steps.hermit-version.outputs.version }}
 ```
 
 # License
