@@ -1,0 +1,29 @@
+name: Hermit Package Version
+description: Get the version of Hermit managed package
+inputs:
+  package:
+    description: The name of the package
+    required: true
+  working-directory:
+    description: The directory of the Hermit workspace
+    default: .
+    required: false
+outputs:
+  version:
+    description: The version of the package
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/github-script@v6
+      with:
+        script: |
+          const script_path = require('path')
+            .resolve('${{ github.action_path }}', 'script.js');
+          const script = require(script_path);
+          await script({
+            package: '${{ inputs.package }}',
+            cwd: '${{ inputs.working-directory }}',
+            core,
+            exec,
+          });
