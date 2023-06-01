@@ -11,11 +11,13 @@ inputs:
 outputs:
   version:
     description: The version of the package
+    value: ${{ steps.script.outputs.version }}
 
 runs:
   using: "composite"
   steps:
-    - uses: actions/github-script@v6
+    - id: script
+      uses: actions/github-script@v6
       with:
         script: |
           const script_path = require('path')
